@@ -1,9 +1,12 @@
+//Andy
+
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
+//class with 2 objects names and isCompleted
 class Task {
   String name;
   bool isCompleted;
@@ -39,6 +42,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
   final TextEditingController _taskController = TextEditingController();
   final List<Task> _tasks = [];
 
+  //Method that adds the task to the list of _tasks
   void _addTask() {
     if (_taskController.text.isNotEmpty) {
       setState(() {
@@ -48,12 +52,15 @@ class _TaskListScreenState extends State<TaskListScreen> {
     }
   }
 
+
+  //Method that checks and unchecks the task
   void _toggleTaskCompletion(int index) {
     setState(() {
       _tasks[index].isCompleted = !_tasks[index].isCompleted;
     });
   }
 
+  //Method that removes tasks
   void _deleteTask(int index) {
     setState(() {
       _tasks.removeAt(index);
@@ -73,6 +80,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
           children: [
             Row(
               children: [
+                //Text field 
                 Expanded(
                   child: TextField(
                     controller: _taskController,
@@ -81,8 +89,9 @@ class _TaskListScreenState extends State<TaskListScreen> {
                     ),
                   ),
                 ),
+               // Plus(+) icon button when clicked calls addTask method
                 IconButton(
-                  icon: const Icon(Icons.add),
+                  icon: const Icon(Icons.add), 
                   onPressed: _addTask,
                 ),
               ],
@@ -104,6 +113,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                             : null,
                       ),
                     ),
+                    //Trash icon button that calls deleteTask method
                     trailing: IconButton(
                       icon: const Icon(Icons.delete, color: Colors.red),
                       onPressed: () => _deleteTask(index),
